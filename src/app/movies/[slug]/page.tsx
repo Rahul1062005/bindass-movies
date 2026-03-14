@@ -1,75 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
-import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import type { Movie } from "@/lib/movies";
+import {
+  findMovieBySlugFromStore,
+  queryMoviesFromStore,
+} from "@/lib/movies/repository";
 import { MovieTrackingControl } from "@/components/movie-tracking-control";
 import { SimilarMoviesCarousel } from "@/components/similar-movies-carousel";
 import { TrailerModal } from "@/components/trailer-modal";
 import styles from "./page.module.css";
 
-type MovieResponse = {
-  movie: Movie;
-};
-
-type MoviesResponse = {
-  movies: Movie[];
-};
-
 const YOUTUBE_VIDEO_ID_REGEX = /"videoId":"([A-Za-z0-9_-]{11})"/g;
 
-async function getBaseUrl(): Promise<string> {
-  const headerStore = await headers();
-  const host =
-    headerStore.get("x-forwarded-host") ??
-    headerStore.get("host") ??
-    process.env.VERCEL_URL ??
-    "localhost:3000";
+async function fetchMovieBySlug(slug: string): Promise<Movie> {
+  const movie = await findMovieBySlugFromStore(slug);
 
-  const proto =
-    headerStore.get("x-forwarded-proto") ??
-    (host.includes("localhost") ? "http" : "https");
-
-  return `${proto}://${host}`;
-}
-
-async function fetchMovieBySlug(slug: string, baseUrl: string): Promise<Movie> {
-  const response = await fetch(
-    `${baseUrl}/api/movies/${encodeURIComponent(slug)}`,
-    {
-      cache: "no-store",
-    },
-  );
-
-  if (response.status === 404) {
+  if (!movie) {
     notFound();
   }
 
-  if (!response.ok) {
-    throw new Error("Failed to load movie details.");
-  }
-
-  const payload = (await response.json()) as MovieResponse;
-  return payload.movie;
+  return movie;
 }
 
-async function fetchSimilarMovies(movie: Movie, baseUrl: string): Promise<Movie[]> {
-  const params = new URLSearchParams({
+async function fetchSimilarMovies(movie: Movie): Promise<Movie[]> {
+  const movies = await queryMoviesFromStore({
     mood: movie.moodLane,
-    limit: "30",
+    limit: 30,
   });
 
-  const response = await fetch(`${baseUrl}/api/movies?${params.toString()}`, {
-    cache: "no-store",
-  });
-
-  if (!response.ok) {
-    return [];
-  }
-
-  const payload = (await response.json()) as MoviesResponse;
-
-  return payload.movies
+  return movies
     .filter((candidate) => candidate.slug !== movie.slug)
     .sort((a, b) => {
       const intensityDeltaA = Math.abs(a.intensity - movie.intensity);
@@ -124,13 +84,8 @@ export default async function MovieDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const baseUrlPromise = getBaseUrl();
-  const moviePromise = baseUrlPromise.then((baseUrl) =>
-    fetchMovieBySlug(slug, baseUrl),
-  );
-  const similarMoviesPromise = Promise.all([moviePromise, baseUrlPromise]).then(
-    ([movie, baseUrl]) => fetchSimilarMovies(movie, baseUrl),
-  );
+  const moviePromise = fetchMovieBySlug(slug);
+  const similarMoviesPromise = moviePromise.then((movie) => fetchSimilarMovies(movie));
   const trailerVideoIdPromise = moviePromise.then((movie) =>
     fetchYouTubeTrailerId(movie),
   );
