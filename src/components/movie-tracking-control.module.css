@@ -1,0 +1,124 @@
+.panel {
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  background: var(--surface-2);
+  box-shadow: var(--card-shadow);
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.header {
+  display: grid;
+  gap: 4px;
+}
+
+.header h3 {
+  font-size: 1rem;
+  color: var(--foreground);
+}
+
+.header p {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field span {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+
+.field select {
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--input-border);
+  padding: 0 10px;
+  background: var(--input-bg);
+  color: var(--input-text);
+  font-family: inherit;
+  font-size: 0.92rem;
+}
+
+.field select:focus {
+  outline: 2px solid var(--focus-ring);
+  border-color: var(--accent);
+}
+
+.ratingSection {
+  display: grid;
+  gap: 7px;
+}
+
+.ratingLabel {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+
+.starRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.starButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--ink-muted);
+  font-size: 1.08rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.starButton:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 1px;
+}
+
+.starButtonActive {
+  color: var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 64%, var(--input-border));
+  background: color-mix(in srgb, var(--accent) 16%, var(--input-bg));
+}
+
+.ratingMetaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ratingMeta {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.ratingClear {
+  border: 1px solid var(--toggle-border);
+  background: var(--toggle-bg);
+  color: var(--toggle-text);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.current {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}

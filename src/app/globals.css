@@ -1,13 +1,135 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+
+  --background: #0e141d;
+  --surface: #141d29;
+  --surface-2: #1a2635;
+  --surface-3: #202f42;
+  --foreground: #eaf1f8;
+  --ink-soft: #aab7c8;
+  --ink-muted: #8f9fb3;
+
+  --accent: #ff7a45;
+  --accent-soft: #ffb68f;
+  --accent-strong: #ff955f;
+  --danger: #ff8b8b;
+
+  --border: #2a394b;
+  --border-soft: #394c64;
+
+  --page-bg-start: #0e141d;
+  --page-bg-end: #141d29;
+  --page-glow-a: rgba(255, 122, 69, 0.3);
+  --page-glow-b: rgba(87, 146, 255, 0.25);
+  --grain-ink: rgba(255, 255, 255, 0.03);
+
+  --panel-bg: color-mix(in srgb, var(--surface) 93%, #ffffff 7%);
+  --panel-shadow: 0 14px 35px rgba(4, 11, 20, 0.5);
+  --card-shadow: 0 8px 24px rgba(4, 11, 20, 0.4);
+
+  --pill-bg: rgba(255, 122, 69, 0.18);
+  --pill-border: rgba(255, 149, 95, 0.52);
+  --pill-text: #ffd2be;
+
+  --tag-bg: rgba(255, 255, 255, 0.03);
+  --tag-border: var(--border-soft);
+  --tag-text: #d8e2ef;
+
+  --input-bg: color-mix(in srgb, var(--surface-2) 85%, #0e141d 15%);
+  --input-text: var(--foreground);
+  --input-border: var(--border-soft);
+  --focus-ring: rgba(255, 149, 95, 0.55);
+
+  --list-item-bg: color-mix(in srgb, var(--surface-2) 90%, #ffffff 10%);
+
+  --skeleton-a: #273446;
+  --skeleton-b: #334863;
+  --skeleton-c: #273446;
+
+  --featured-fallback-a: rgba(255, 177, 130, 0.48);
+  --featured-fallback-b: #c4512d;
+  --featured-fallback-c: #5f2a1c;
+  --featured-chip-border: rgba(255, 232, 214, 0.72);
+  --featured-chip-bg: rgba(22, 27, 38, 0.35);
+  --featured-chip-text: #fff4ea;
+  --featured-heading: #fff8f2;
+  --featured-meta: #ffe7d2;
+  --featured-copy: #fff1e4;
+  --featured-badge-border: rgba(255, 223, 197, 0.62);
+  --featured-badge-bg: rgba(24, 31, 44, 0.4);
+  --featured-badge-text: #fff4e8;
+
+  --toggle-bg: rgba(255, 255, 255, 0.04);
+  --toggle-border: var(--border-soft);
+  --toggle-text: var(--foreground);
+  --toggle-shadow: 0 8px 20px rgba(2, 8, 19, 0.4);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html[data-theme="light"] {
+  color-scheme: light;
+
+  --background: #f2ece4;
+  --surface: #fbf7f2;
+  --surface-2: #fff9f2;
+  --surface-3: #fffdfa;
+  --foreground: #1f2a37;
+  --ink-soft: #4c5968;
+  --ink-muted: #5f6b78;
+
+  --accent: #ea5b2b;
+  --accent-soft: #ffd7b3;
+  --accent-strong: #f3a86b;
+  --danger: #8e1c1c;
+
+  --border: #d9d1c6;
+  --border-soft: #e2d8cc;
+
+  --page-bg-start: #f2ece4;
+  --page-bg-end: #ede4d8;
+  --page-glow-a: #ffd7b3;
+  --page-glow-b: #f6bd60;
+  --grain-ink: rgba(31, 42, 55, 0.03);
+
+  --panel-bg: color-mix(in srgb, var(--surface) 90%, #ffffff 10%);
+  --panel-shadow: 0 14px 35px rgba(31, 42, 55, 0.08);
+  --card-shadow: 0 8px 24px rgba(31, 42, 55, 0.07);
+
+  --pill-bg: #fff2e6;
+  --pill-border: #d4b39f;
+  --pill-text: #7a3a2a;
+
+  --tag-bg: #ffffff;
+  --tag-border: #e1d6ca;
+  --tag-text: #7a3a2a;
+
+  --input-bg: #fffdf8;
+  --input-text: #1f2a37;
+  --input-border: #d7cec3;
+  --focus-ring: #f4b48d;
+
+  --list-item-bg: #fffaf4;
+
+  --skeleton-a: #ece3d8;
+  --skeleton-b: #f5eee6;
+  --skeleton-c: #ece3d8;
+
+  --featured-fallback-a: rgba(255, 215, 179, 0.88);
+  --featured-fallback-b: #f6bd60;
+  --featured-fallback-c: #9a3412;
+  --featured-chip-border: rgba(255, 232, 214, 0.72);
+  --featured-chip-bg: rgba(22, 27, 38, 0.35);
+  --featured-chip-text: #fff4ea;
+  --featured-heading: #fff8f2;
+  --featured-meta: #ffe7d2;
+  --featured-copy: #fff1e4;
+  --featured-badge-border: rgba(255, 223, 197, 0.62);
+  --featured-badge-bg: rgba(24, 31, 44, 0.4);
+  --featured-badge-text: #fff4e8;
+
+  --toggle-bg: #fffdf8;
+  --toggle-border: #d7cec3;
+  --toggle-text: #1f2a37;
+  --toggle-shadow: 0 8px 20px rgba(31, 42, 55, 0.14);
 }
 
 html,
@@ -19,7 +141,9 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), "Segoe UI", sans-serif;
+  line-height: 1.45;
+  transition: background-color 250ms ease, color 250ms ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -35,8 +159,13 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+h1,
+h2,
+h3 {
+  line-height: 1.05;
+}
+
+::selection {
+  color: #0f1218;
+  background: var(--accent-soft);
 }

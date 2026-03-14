@@ -1,0 +1,176 @@
+.section {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--panel-bg);
+  box-shadow: var(--panel-shadow);
+  padding: 18px;
+  display: grid;
+  gap: 14px;
+  height: 100%;
+}
+
+.header {
+  display: grid;
+  gap: 4px;
+}
+
+.header h2 {
+  font-size: 1.35rem;
+}
+
+.header p {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.emptyState {
+  color: var(--ink-soft);
+}
+
+.carouselShell {
+  --nav-size: 36px;
+  --carousel-gap: 12px;
+  --carousel-card-width: 260px;
+  width: min(
+    100%,
+    calc(
+      (var(--carousel-card-width) * 3) +
+      (var(--carousel-gap) * 2) +
+      (var(--nav-size) * 2) +
+      16px
+    )
+  );
+  display: grid;
+  grid-template-columns: var(--nav-size) minmax(0, 1fr) var(--nav-size);
+  align-items: center;
+  gap: 8px;
+}
+
+.navButton,
+.navSpacer {
+  width: var(--nav-size);
+  height: var(--nav-size);
+}
+
+.navButton {
+  border-radius: 999px;
+  border: 1px solid var(--toggle-border);
+  background: var(--toggle-bg);
+  color: var(--toggle-text);
+  box-shadow: var(--toggle-shadow);
+  display: grid;
+  place-items: center;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.rail {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  gap: var(--carousel-gap);
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 4px 10px;
+  margin: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  flex: 0 0 var(--carousel-card-width);
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  background: var(--surface-2);
+  box-shadow: var(--card-shadow);
+  color: inherit;
+  text-decoration: none;
+  padding: 10px;
+  display: grid;
+  gap: 8px;
+  scroll-snap-align: start;
+}
+
+.posterFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  background: var(--surface);
+}
+
+.posterImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.posterFallback {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 20% 30%, var(--accent-soft) 0%, transparent 45%),
+    linear-gradient(145deg, var(--accent-strong) 0%, var(--accent) 100%);
+  color: #fff7ef;
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 700;
+  font-family: var(--font-display), "Segoe UI", sans-serif;
+}
+
+.card h3 {
+  font-size: 1.05rem;
+  color: var(--foreground);
+}
+
+.meta {
+  font-size: 0.84rem;
+  color: var(--ink-muted);
+}
+
+.mood {
+  font-size: 0.78rem;
+  color: var(--pill-text);
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid var(--pill-border);
+  background: var(--pill-bg);
+  padding: 4px 8px;
+}
+
+@media (max-width: 920px) {
+  .section {
+    border-radius: 16px;
+  }
+
+  .carouselShell {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .navButton,
+  .navSpacer {
+    display: none;
+  }
+
+  .card {
+    flex-basis: min(78vw, 240px);
+  }
+
+  .rail {
+    --carousel-gap: 10px;
+    padding: 2px 2px 8px;
+  }
+}
