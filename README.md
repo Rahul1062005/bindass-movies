@@ -208,6 +208,6 @@ npm run start
 
 ## Author 👤
 
-**BiNDASS Team**
+Rahul
 
 Built with passion for cinema, discovery, and great user experience.
