@@ -1,16 +1,34 @@
 # BiNDASS Movies 🎬
 
+## Live Demo
+
+Check out the live version of the project here:
+
+https://bindass-movies.vercel.app
+
 ## Project Description
 
 BiNDASS Movies is a cinematic movie discovery platform that helps users explore films based on mood, track what they watch, and discover similar movies with a smooth, modern browsing experience.
 
-## Screenshots (Placeholders) 📸
+## Screenshots
 
-Replace these placeholders with actual product screenshots.
+### Homepage
 
-![Homepage Discovery](./public/screenshots/homepage-discovery.png)
-![Movie Detail Page](./public/screenshots/movie-detail.png)
-![Watch Tracking Dashboard](./public/screenshots/dashboard.png)
+Shows the movie discovery layout with featured discovery and mood-based sections.
+
+![Homepage](./screenshots/homepage.png)
+
+### Movie Details Page
+
+Displays the hero backdrop, synopsis, trailer, watch tracking, and similar movies.
+
+![Movie Details](./screenshots/movie-details.png)
+
+### Dashboard (My Movies)
+
+Shows the watch tracking dashboard with statistics and activity timeline.
+
+![Dashboard](./screenshots/dashboard.png)
 
 ## Features ✨
 
